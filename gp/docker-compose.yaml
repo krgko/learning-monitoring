@@ -17,6 +17,7 @@ services:
       - 9090:9090
     networks:
       - learning_monitoring
+
   learning_monitoring_node-exporter:
     image: prom/node-exporter:v1.0.0-rc.0
     container_name: learning_monitoring_node-exporter
@@ -24,6 +25,7 @@ services:
       - 9100:9100
     networks:
       - learning_monitoring
+
   learning_monitoring_grafana:
     image: grafana/grafana:6.7.2
     container_name: learning_monitoring_grafana
