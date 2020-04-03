@@ -1,0 +1,14 @@
+version: "3.5"
+services:
+  learning_monitoring_api:
+    build:
+      context: .
+    image: learning_monitoring_api:0.0.0
+    container_name: learning_monitoring_api
+    ports:
+      - 8055:8055
+    networks:
+      - learning_monitoring
+
+networks:
+  learning_monitoring:
