@@ -4,6 +4,6 @@ Monitoring is a one thing that important for every software project. This projec
 
 ## What will learn
 
-    - Golang API server with multistage build
-    - Prometheus and Grafana stack
-    - EFK stack
+- Golang API server with multistage build
+- Prometheus and Grafana stack
+- EFK stack
