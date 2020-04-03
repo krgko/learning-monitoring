@@ -1,0 +1,42 @@
+version: "3.5"
+
+volumes:
+  grafana: {}
+  prometheus: {}
+
+services:
+  learning_monitoring_prometheus:
+    image: prom/prometheus:v2.17.1
+    container_name: learning_monitoring_prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    ports:
+      - 9090:9090
+    networks:
+      - learning_monitoring
+  learning_monitoring_node-exporter:
+    image: prom/node-exporter:v1.0.0-rc.0
+    container_name: learning_monitoring_node-exporter
+    ports:
+      - 9100:9100
+    networks:
+      - learning_monitoring
+  learning_monitoring_grafana:
+    image: grafana/grafana:6.7.2
+    container_name: learning_monitoring_grafana
+    volumes:
+      - grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=P@ssw0rd
+    depends_on:
+      - learning_monitoring_prometheus
+    ports:
+      - 9110:3000
+    networks:
+      - learning_monitoring
+
+networks:
+  learning_monitoring:
