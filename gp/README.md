@@ -1,6 +1,6 @@
 # GP
 
-Grafana and Prometheus is another stack for monitoring. **Does not link to API server yet**
+Grafana and Prometheus is another stack for monitoring.
 
 ## Start docker
 

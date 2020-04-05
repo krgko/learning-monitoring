@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/labstack/echo-contrib/prometheus"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -15,6 +16,10 @@ func main() {
 	e.Use(middleware.Recover())
 
 	e.GET("/", hello)
+
+	// Call via /metrics
+	p := prometheus.NewPrometheus("server", nil)
+	p.Use(e)
 
 	s := &http.Server{
 		Addr:         ":8055",
