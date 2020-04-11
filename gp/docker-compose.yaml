@@ -2,6 +2,7 @@ version: "3.5"
 
 volumes:
   grafana: {}
+  influxdb: {}
   prometheus: {}
 
 services:
@@ -37,6 +38,19 @@ services:
       - learning_monitoring_prometheus
     ports:
       - 9110:3000
+    networks:
+      - learning_monitoring
+
+  learning_monitoring_influxdb:
+    image: influxdb:1.7.10
+    container_name: learning_monitoring_influxdb
+    volumes:
+      - influxdb:/var/lib/influxdb
+    environment: 
+      - INFLUXDB_GRAPHITE_ENABLED=true
+    ports:
+      - 9115:8086
+      - 9116:2003
     networks:
       - learning_monitoring
 
